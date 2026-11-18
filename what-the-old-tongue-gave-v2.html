@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What the Old Tongue Gave: a hyperpoem</title>
+<style>
+:root{--bg:#e6ebf3;--ink:#14213d;--mute:#4a5a78;--acc:#9a5b0f;--card:#f7f9fc;--line:#c3cde0;--hl:rgba(154,91,15,.18);box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1228;--ink:#f0e8d6;--mute:#9fb0cf;--acc:#f2a65a;--card:#141c3a;--line:#28345f;--hl:rgba(242,166,90,.22);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1228;--ink:#f0e8d6;--mute:#9fb0cf;--acc:#f2a65a;--card:#141c3a;--line:#28345f;--hl:rgba(242,166,90,.22);color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:6rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.2rem/1.8 "Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;padding-bottom:16rem}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+#prog{position:fixed;left:0;top:0;height:4px;width:0;background:linear-gradient(90deg,#f2a65a,#e8d28a);z-index:20}
+.hero{position:relative;overflow:hidden;min-height:92vh;padding:calc(env(safe-area-inset-top,0px) + 3rem) 1.5rem 4rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#f4ead6;background:radial-gradient(120% 70% at 50% 115%,#b8512b 0%,#5a2a3a 35%,transparent 70%),linear-gradient(#070b1d,#1b1647)}
+.hero h1{font-size:clamp(2.6rem,9vw,5.6rem);line-height:1.02;font-weight:500;letter-spacing:-.02em;margin:0 0 1.2rem;max-width:14ch;position:relative}
+.hero p{margin:0 0 2rem;font-size:1.15rem;max-width:30rem;color:#d9d3e6;position:relative}
+.go{position:relative;font-size:1.05rem;color:#1b1647;background:#f2c27a;border:0;border-radius:999px;padding:.85rem 1.7rem;cursor:pointer;font-weight:600}
+.em{position:absolute;bottom:-10px;border-radius:50%;background:#f7c978;opacity:0;animation:rise linear infinite}
+@keyframes rise{10%{opacity:.9}100%{transform:translateY(-95vh) translateX(30px);opacity:0}}
+.hall{position:relative;width:min(22rem,70%);margin:0 auto 1.8rem;color:#f2c27a}
+.hall svg{width:100%;display:block}
+.hall path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hall .f{fill:#f2a65a;stroke:none;transform-origin:110px 112px;animation:fk 2.2s ease-in-out infinite}
+@keyframes fk{50%{transform:scale(1.12,1.2)}}
+.bar{position:sticky;top:0;z-index:15;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + .6rem) 1rem .6rem;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar button{font-size:.95rem;line-height:1;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.6rem 1rem;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:var(--card)}
+.poem{max-width:46rem;margin:2.5rem auto 0;padding:0 1.1rem}
+.st{position:relative;overflow:hidden;margin:0 0 2.2rem;padding:1.3rem 2rem 1.8rem;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--e);border-radius:6px 26px 6px 26px;transition:background 1.5s,border-color 1.5s,box-shadow 1.5s}
+.st>svg{position:absolute;right:-1rem;bottom:-1.2rem;width:9rem;height:9rem;fill:none;stroke:var(--e);stroke-width:1;opacity:.22;pointer-events:none}
+.st p{margin:0;position:relative}
+.top2{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.9rem;font-size:.98rem;font-style:italic;color:var(--mute)}
+.say{font-style:normal;font-size:.85rem;color:var(--ink);background:none;border:1px solid var(--line);border-radius:999px;padding:.3rem .8rem;cursor:pointer}
+.hw{font:inherit;color:inherit;background:none;border:0;border-bottom:2px dotted var(--acc);padding:0;cursor:pointer;transition:background .2s}
+.hw:hover,.hw:focus-visible{background:var(--hl)}
+body.p-makers .hw[data-tag~="makers"],body.p-tongue .hw[data-tag~="tongue"],body.p-beat .hw[data-tag~="beat"]{background:var(--hl);border-bottom-style:solid}
+body.open #s5{background:transparent;border-color:transparent;box-shadow:0 0 90px var(--hl)}
+.fl{position:fixed;right:max(1rem,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);width:2.6rem;height:2.6rem;color:var(--acc);transform-origin:50% 100%;transform:scale(var(--s,.8));z-index:4;pointer-events:none;transition:transform .4s}
+.fl path{fill:currentColor;fill-opacity:.3;stroke:currentColor;stroke-width:1.2;stroke-linejoin:round}
+.fl.p{animation:bt .45s ease-out}
+@keyframes bt{40%{transform:scale(calc(var(--s,.8)*1.3))}}
+#note{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);width:min(40rem,calc(100% - 2rem));transform:translate(-50%,140%);background:var(--card);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:10px 22px 10px 22px;padding:1rem 1.3rem 1.1rem;font-size:1.02rem;line-height:1.55;transition:transform .35s;z-index:25;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+#note.on{transform:translate(-50%,0)}
+#note .t{display:flex;gap:.8rem;align-items:center}
+#note svg{width:2.2rem;height:2.2rem;flex:none;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hd{font-size:1.7rem;font-weight:700;line-height:1.1}
+.pos{font-style:italic;color:var(--mute);font-size:.95rem}
+#note .t>div{flex:1}
+#note p{margin:.6rem 0 0}
+.cx{color:var(--mute)}
+#note a{display:inline-block;margin-top:.7rem;color:var(--acc);font-weight:600}
+#x{font-size:.9rem;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:.25rem .7rem;cursor:pointer}
+.refs{max-width:46rem;margin:3rem auto 0;padding:0 1.1rem;font-size:1rem;line-height:1.6}
+.refs summary{cursor:pointer;font-size:1.15rem;font-weight:600}
+.refs p{margin:.7rem 0 0 1.6rem;text-indent:-1.6rem}
+.refs a{color:var(--acc);word-break:break-all}
+@media (max-width:640px){body{font-size:1.1rem}.st{padding:1.1rem 1.2rem 1.5rem}}
+@media (prefers-reduced-motion:reduce){.em{display:none}.hall .f,.fl.p{animation:none}*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<svg id="fl" class="fl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4.5 6 6.5 6 12a6 6 0 0 1-12 0c0-2.2 1-3.6 2.2-4.8.2 2 1 3 2.3 3.2C10 8 10.500 5 12 2z"/></svg>
+<section class="hero" id="top">
+<div class="hall" aria-hidden="true"><svg viewBox="0 0 220 130"><path d="M10 120V50L110 8l100 42v70M10 50h200M40 120V62M180 120V62M70 36v14M150 36v14M0 121h220"/><path class="f" d="M110 112c-9-1-14-8-13-15 1-5 5-8 6-13 4 3 5 7 5 10 2-3 5-6 4-12 7 6 11 12 11 18 0 7-6 12-13 12z"/></svg></div>
+<h1>What the Old Tongue Gave</h1>
+<p>A hyperpoem. Tap an underlined word to open its dictionary entry, then follow a path through the poem.</p>
+<button class="go" id="begin">Begin reading</button>
+</section>
+<div class="bar" role="group" aria-label="Reading controls">
+<button id="snd" aria-pressed="false">Sound: off</button>
+<button class="path" data-p="makers" aria-pressed="false">Follow the makers</button>
+<button class="path" data-p="tongue" aria-pressed="false">Follow the borrowed tongue</button>
+<button class="path" data-p="beat" aria-pressed="false">Follow the beat</button>
+</div>
+<main class="poem" id="poem" aria-label="Poem"></main>
+<details class="refs"><summary>References</summary><div id="refs"></div></details>
+<aside id="note" role="region" aria-live="polite" aria-label="Dictionary entry"></aside>
+<script>
+const P=`A {scop|scop} once sang in a firelit hall
+of monsters, mead, and the fate that waits.
+His words are dust, but the pulse of them,
+that {stress|beat of stress} and the breath between,
+still turns in the lines that poets write.
+
+Then {chaucer|Chaucer} rode with a motley crew,
+the miller crude and the prioress prim,
+and gave our speech its common face:
+not Latin’s robe nor the court’s French lace,
+but the language of those who tell and trade.
+
+{shakespeare|Shakespeare} spun from a borrowed plot
+the doubt of a prince, the rage of a king,
+and taught the world what a mind can say
+when it argues with itself. We still
+have no better words for jealousy, love, or ambition.
+{milton|Milton}, blind, made Satan speak
+so well that readers are troubled yet.
+The {kjv|King James Bible} hummed beneath,
+lending a cadence to every sermon,
+every speech, every vow made in English since.
+
+{austen|Austen} watched a drawing room
+and found in its hush a battlefield,
+where irony cut cleaner than swords.
+{dickens|Dickens} walked the cold back streets
+and made the nation look at its poor.
+The {brontes|Brontës} gave the moor a voice.
+{wordsworth|Wordsworth} found a god in a daffodil field.
+{keats|Keats} wrote his name in water, and the water
+has outlasted marble.
+
+Then came the wars, and {eliot|Eliot’s wasteland},
+{woolf|Woolf’s long sentence}, bright as a stream,
+{orwell|Orwell’s warning}, plain as a stone.
+The {empire|empire shrank}, and voices rose
+from Lagos, Kingston, Mumbai, Dhaka,
+writing back in the borrowed tongue,
+bending it, breaking it, making it theirs.
+{achebe|Achebe}, {walcott|Walcott}, {rushdie|Rushdie}, {adichie|Adichie}:
+the language that once crossed the seas as command
+returned as story, and it was changed.
+
+Now a student in {manila|Manila}
+reads a sonnet on a cracked-screen phone.
+A novelist in {nairobi|Nairobi}
+echoes a line she never knew she knew.
+The hall has no walls. The fire is lit
+wherever someone reads aloud.
+What did English literature give?
+Not perfection, for it carried its sins:
+the crown, the conquest, the closed-off door.
+But it gave a restless, questioning tongue
+and a habit of looking hard at ourselves.
+It gave us forms to hold our grief,
+and freedom to break them when we must.
+And still the old stress beats beneath,
+that Anglo-Saxon heart of speech,
+saying: remember. Tell it. {hwaet|Go on.}`;
+const I={flame:"M12 3c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-10z",quill:"M20 4C12 4 7 9 6 18l-2 2M6 18c5 0 9-3 11-8M9 15l5-5",mask:"M4 5h16v6a8 8 0 0 1-16 0zM8 10h2M14 10h2M9 15q3 2 6 0",book:"M4 5h7a2 2 0 0 1 1 1v13a2 2 0 0 0-1-1H4zM20 5h-7a2 2 0 0 0-1 1v13a2 2 0 0 1 1-1h7z",wave:"M3 9q3-3 6 0t6 0 6 0M3 15q3-3 6 0t6 0 6 0",phone:"M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM11 18h2"};
+/* key:[icon, headword, part of speech, definition, in the poem, Merriam-Webster entry] */
+const N={
+scop:["flame","scop","noun","An Old English poet or bard who performed from memory.","In Anglo-Saxon England a scop sang in the mead hall. Beowulf, the great surviving Old English poem, was written down around the year 1000.","scop"],
+stress:["wave","stress","noun","The force or prominence given to a syllable in speech or verse.","Old English lines carried four stresses, split by a pause and linked by alliteration rather than rhyme. Press Sound to hear the pulse.","stress"],
+chaucer:["book","vernacular","noun","The everyday language of a people or region, as opposed to Latin or formal literary language.","The Canterbury Tales (c. 1387–1400) gathered pilgrims of every rank and was written in the English people actually spoke.","vernacular"],
+shakespeare:["mask","Shakespearean","adjective","Of, relating to, or characteristic of Shakespeare or his works.","Hamlet and King Lear rework older stories. Shakespeare gave their characters minds that argue with themselves.","Shakespearean"],
+milton:["quill","blank verse","noun","Unrhymed verse, especially in iambic pentameter.","Paradise Lost (1667) was dictated after Milton lost his sight. Its Satan is so persuasive that readers still argue about him.","blank%20verse"],
+kjv:["book","cadence","noun","A rhythmic flow or sequence of sounds in language.","Published in 1611, the King James Bible still echoes in English sermons, speeches and wedding vows.","cadence"],
+austen:["quill","irony","noun","The use of words to suggest something other than, often the opposite of, their literal meaning.","In Pride and Prejudice (1813) drawing-room comedy carries real stakes, and irony is Austen’s sharpest weapon.","irony"],
+dickens:["book","Dickensian","adjective","Of or suggestive of Dickens’s writings, or of the squalid conditions they portray.","Novels such as Oliver Twist (1838) pulled poverty and child labor into the center of Victorian reading.","Dickensian"],
+brontes:["wave","moor","noun","An open, rolling stretch of wild, infertile land, often covered with heather.","Charlotte, Emily and Anne Brontë published their first novels in 1847, setting fierce inner lives against the Yorkshire moors.","moor"],
+wordsworth:["flame","daffodil","noun","A spring-blooming plant with yellow, trumpet-shaped flowers.","Wordsworth’s poem about a field of daffodils, published in 1807, found the sacred in ordinary nature.","daffodil"],
+keats:["quill","epitaph","noun","An inscription on a tomb or monument in memory of the person buried there.","Keats died at twenty-five in 1821 and asked for an epitaph saying his name was written in water. The poem turns that image around.","epitaph"],
+eliot:["wave","wasteland","noun","Barren or devastated land.","The Waste Land (1922) answered a world after the First World War with fragments, many voices and borrowed lines.","wasteland"],
+woolf:["wave","stream of consciousness","noun","A literary technique that presents a character’s thoughts and feelings as they occur, in a continuous flow.","In Mrs Dalloway (1925) and To the Lighthouse (1927), Virginia Woolf’s sentences follow thought like a current.","stream%20of%20consciousness"],
+orwell:["quill","Orwellian","adjective","Of or suggestive of George Orwell’s writings, especially the control of truth and thought by a state.","In “Politics and the English Language” (1946), Orwell argued that vague writing hides dishonest thinking.","Orwellian"],
+empire:["wave","empire","noun","A major political unit with a large territory, or many territories, under one ruling authority.","After the Second World War, Britain’s empire gave way to independent nations whose writers took up English on their own terms.","empire"],
+achebe:["book","postcolonial","adjective","Of or relating to the period after colonies gain independence.","Things Fall Apart (1958) told a Nigerian story in English shaped by Igbo proverbs, answering colonial fiction about Africa.","postcolonial"],
+walcott:["quill","epic","noun","A long narrative poem about the deeds of a hero.","The St Lucian poet won the 1992 Nobel Prize in Literature. His epic Omeros (1990) reworks Homer in a Caribbean setting.","epic"],
+rushdie:["book","idiom","noun","An expression particular to a language or a people, or the style of speech of a region or group.","Midnight’s Children (1981) fills English with the rhythms, jokes and idioms of India.","idiom"],
+adichie:["quill","narrative","noun","A story, or a way of presenting events as a story.","Her novels, including Half of a Yellow Sun (2006), carry Nigerian history and voices in English.","narrative"],
+manila:["phone","lingua franca","noun","A language used for communication between people whose native languages differ.","English is one of the two official languages of the Philippines, alongside Filipino, and has grown into a Philippine English of its own.","lingua%20franca"],
+nairobi:["phone","mother tongue","noun","One’s native language.","The Kenyan writer Ngũgĩ wa Thiong’o chose to write in Gikuyu rather than English, arguing that language carries a people’s culture.","mother%20tongue"],
+hwaet:["flame","lo","interjection","Used to call attention to something or to express wonder.","Beowulf opens with the Old English cry “Hwæt!”. The poem’s last line answers it: the story is handed on.","lo"]};
+const T={makers:["scop","chaucer","shakespeare","milton","austen","dickens","brontes","wordsworth","keats","eliot","woolf","orwell","achebe","walcott","rushdie","adichie"],tongue:["chaucer","kjv","empire","achebe","walcott","rushdie","adichie","manila","nairobi"],beat:["stress","scop","kjv","hwaet"]};
+const E=[["The mead hall","#f2a65a","flame"],["Medieval roads","#e2c06f","book"],["The Renaissance stage","#d98c9d","mask"],["Romantic and Victorian pages","#8fb3d9","quill"],["Modern and postcolonial voices","#6fc4b0","wave"],["Now","#f2d08a","phone"]];
+const U="https://www.merriam-webster.com/dictionary/";
+const tag=k=>Object.keys(T).filter(t=>T[t].includes(k)).join(" ");
+const st=P.split("\n\n");
+document.getElementById("poem").innerHTML=st.map((s,i)=>`<section class="st" id="s${i}" style="--e:${E[i][1]}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${I[E[i][2]]}"/></svg><div class="top2"><span>${E[i][0]}</span><button class="say" data-i="${i}" aria-label="Listen to stanza ${i+1}">▶ Listen</button></div>`+s.split("\n").map(l=>`<p>${l.replace(/\{(\w+)\|([^}]+)\}/g,(m,k,t)=>`<button class="hw" data-k="${k}" data-tag="${tag(k)}">${t}</button>`)}</p>`).join("")+`</section>`).join("");
+document.getElementById("refs").innerHTML=Object.values(N).map(n=>n[1].toLowerCase()).map((_, i)=>Object.values(N)[i]).sort((a,b)=>a[1].toLowerCase()<b[1].toLowerCase()?-1:1).map(n=>`<p>Merriam-Webster. (n.d.). <i>${n[1]}</i>. In <i>Merriam-Webster.com dictionary</i>. <a href="${U}${n[5]}" target="_blank" rel="noopener">${U}${n[5]}</a></p>`).join("");
+const note=document.getElementById("note"),fl=document.getElementById("fl");
+let ac=null,sound=false,tm=null,b=0;
+function tone(f,d,v){try{if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+d);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
+function tick(){tone(b%2?147:98,.5,b%2?.12:.25);fl.classList.remove("p");void fl.getBoundingClientRect();fl.classList.add("p");b=(b+1)%4}
+document.getElementById("snd").onclick=e=>{sound=!sound;try{if(sound){ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume();tm=setInterval(tick,650)}else clearInterval(tm)}catch(x){sound=false}e.target.setAttribute("aria-pressed",sound);e.target.textContent="Sound: "+(sound?"on":"off")};
+function show(k){const [ic,h,pos,d,cx,s]=N[k];note.innerHTML=`<div class="t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${I[ic]}"/></svg><div><div class="hd">${h}</div><div class="pos">${pos}</div></div><button id="x">Close</button></div><p>${d}</p><p class="cx">${cx}</p><a href="${U}${s}" target="_blank" rel="noopener">See the full entry on Merriam-Webster</a>`;note.classList.add("on");document.getElementById("x").onclick=()=>note.classList.remove("on");if(sound)tone(260+Object.keys(N).indexOf(k)*14,.9,.15)}
+document.addEventListener("click",e=>{const h=e.target.closest(".hw");if(h)show(h.dataset.k);const s=e.target.closest(".say");if(s&&window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(st[+s.dataset.i].replace(/[{}]|\w+\|/g,""));u.lang="en-GB";u.rate=.85;speechSynthesis.speak(u)}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")note.classList.remove("on")});
+document.getElementById("begin").onclick=()=>document.getElementById("poem").scrollIntoView();
+document.querySelectorAll(".path").forEach(p=>p.onclick=()=>{const on=p.getAttribute("aria-pressed")!=="true";document.querySelectorAll(".path").forEach(q=>{q.setAttribute("aria-pressed","false");document.body.classList.remove("p-"+q.dataset.p)});if(on){p.setAttribute("aria-pressed","true");document.body.classList.add("p-"+p.dataset.p)}});
+if(!window.speechSynthesis)document.querySelectorAll(".say").forEach(b=>b.hidden=true);
+const hero=document.getElementById("top");
+for(let i=0;i<24;i++){const e=document.createElement("span"),z=2+Math.random()*3;e.className="em";e.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${5+Math.random()*6}s;animation-delay:${Math.random()*6}s`;hero.appendChild(e)}
+addEventListener("scroll",()=>{const m=document.documentElement.scrollHeight-innerHeight,p=Math.min(1,scrollY/m);document.getElementById("prog").style.width=p*100+"%";fl.style.setProperty("--s",(.8+p*.9).toFixed(2))},{passive:true});
+new IntersectionObserver(es=>es.forEach(e=>document.body.classList.toggle("open",e.isIntersecting)),{threshold:.3}).observe(document.getElementById("s5"));
+</script>
+</body>
+</html>
